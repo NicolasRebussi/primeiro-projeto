@@ -1,16 +1,6 @@
-import { IsEmail, IsNotEmpty, Length } from 'class-validator';
-
+// src/usuario/dto/create-usuario.dto.ts
 export class CreateUsuarioDto {
-  @IsNotEmpty()
-  @Length(3, 255)
-  nome: string;
-
-  @IsNotEmpty()
-  @IsEmail()
-  email: string;
-
-  @IsNotEmpty()
-  @Length(6, 255)
-  password: string;
-
+  nome: string;  // Nome completo do usuário
+  email: string; // E-mail único do usuário, utilizado para login
+  password: string; // Senha do usuário
 }

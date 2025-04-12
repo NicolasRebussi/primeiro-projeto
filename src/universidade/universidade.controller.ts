@@ -1,3 +1,4 @@
+// src/universidade/universidade.controller.ts
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { UniversidadeService } from './universidade.service';
 import { CreateUniversidadeDto } from './dto/create-universidade.dto';
@@ -8,8 +9,8 @@ export class UniversidadeController {
   constructor(private readonly universidadeService: UniversidadeService) {}
 
   @Post()
-  create(@Body() createUniversidadeDto: CreateUniversidadeDto) {
-    return this.universidadeService.create(createUniversidadeDto);
+  create(@Body() dto: CreateUniversidadeDto) {
+    return this.universidadeService.create(dto);
   }
 
   @Get()
@@ -23,8 +24,8 @@ export class UniversidadeController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUniversidadeDto: UpdateUniversidadeDto) {
-    return this.universidadeService.update(+id, updateUniversidadeDto);
+  update(@Param('id') id: string, @Body() dto: UpdateUniversidadeDto) {
+    return this.universidadeService.update(+id, dto);
   }
 
   @Delete(':id')

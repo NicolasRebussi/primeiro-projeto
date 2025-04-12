@@ -1,26 +1,54 @@
+// src/universidade/universidade.service.ts
 import { Injectable } from '@nestjs/common';
+import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateUniversidadeDto } from './dto/create-universidade.dto';
 import { UpdateUniversidadeDto } from './dto/update-universidade.dto';
 
 @Injectable()
 export class UniversidadeService {
-  create(createUniversidadeDto: CreateUniversidadeDto) {
-    return 'This action adds a new universidade';
+  constructor(private prisma: PrismaService) {}
+
+  /**
+   * Cria uma nova universidade.
+   */
+  async create(data: CreateUniversidadeDto) {
+    return this.prisma.universidade.create({
+      data,
+    });
   }
 
-  findAll() {
-    return `This action returns all universidade`;
+  /**
+   * Retorna todas as universidades cadastradas.
+   */
+  async findAll() {
+    return this.prisma.universidade.findMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} universidade`;
+  /**
+   * Busca uma universidade pelo ID.
+   */
+  async findOne(id: number) {
+    return this.prisma.universidade.findUnique({
+      where: { id },
+    });
   }
 
-  update(id: number, updateUniversidadeDto: UpdateUniversidadeDto) {
-    return `This action updates a #${id} universidade`;
+  /**
+   * Atualiza uma universidade existente.
+   */
+  async update(id: number, data: UpdateUniversidadeDto) {
+    return this.prisma.universidade.update({
+      where: { id },
+      data,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} universidade`;
+  /**
+   * Remove uma universidade do banco.
+   */
+  async remove(id: number) {
+    return this.prisma.universidade.delete({
+      where: { id },
+    });
   }
 }

@@ -41,7 +41,7 @@ model universidade {
 model usuario {
   id              Int      @id @default(autoincrement())
   nome            String   @db.VarChar(255)
-  email           String   @unique @db.VarChar(255)
+  email           String   @unique @db.VarChar(255) // Adicionando @unique aqui
   password        String   @db.VarChar(255)
   datacriacao     DateTime @default(now()) @db.Timestamp(0)
   dataatualizacao DateTime @default(now()) @db.Timestamp(0)
